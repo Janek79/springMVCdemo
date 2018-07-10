@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDAO.addCustomer(firstName, lastName, email);
 	}
 
-	public CustomerRepositoryImpl getCustomerDAO() {
+	public CustomerRepository getCustomerDAO() {
 		return customerDAO;
 	}
 
