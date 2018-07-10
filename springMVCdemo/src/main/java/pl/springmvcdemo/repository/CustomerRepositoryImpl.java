@@ -1,5 +1,7 @@
 package pl.springmvcdemo.repository;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,13 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 		Session session = sessionFactory.getCurrentSession();
 		Customer customer = new Customer(firstName, lastName, email);
 		session.save(customer);
+	}
+	
+	@Override
+	public List<Customer> getWholeCustomersList() {
+		Session session = sessionFactory.getCurrentSession();
+		
+		return session.createQuery("FROM Customer", Customer.class).getResultList();
 	}
 
 	public SessionFactory getSessionFactory() {

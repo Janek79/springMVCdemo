@@ -1,5 +1,7 @@
 package pl.springmvcdemo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,11 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDAO.addCustomer(firstName, lastName, email);
 	}
 
+	@Override
+	public List<Customer> getWholeCustomersList() {
+		return customerDAO.getWholeCustomersList();
+	}
+	
 	public CustomerRepository getCustomerDAO() {
 		return customerDAO;
 	}
