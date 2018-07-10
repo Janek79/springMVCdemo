@@ -10,4 +10,5 @@ public interface CustomerService {
 	public List<Customer> getWholeCustomersList();
 
 	public void addCustomer(String firstName, String lastName, String email);
+	public void addCustomer(Customer customer);
 }

@@ -29,6 +29,12 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 	}
 	
 	@Override
+	public void addCustomer(Customer customer) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(customer);
+	}
+	
+	@Override
 	public List<Customer> getWholeCustomersList() {
 		Session session = sessionFactory.getCurrentSession();
 		

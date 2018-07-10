@@ -26,6 +26,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public void addCustomer(String firstName, String lastName, String email) {
 		customerDAO.addCustomer(firstName, lastName, email);
 	}
+	
+	@Override
+	public void addCustomer(Customer customer) {
+		customerDAO.addCustomer(customer);
+	}
 
 	@Override
 	public List<Customer> getWholeCustomersList() {
