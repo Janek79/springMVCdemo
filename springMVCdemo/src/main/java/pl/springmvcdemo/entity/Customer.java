@@ -68,4 +68,24 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) {
+			return true;
+		}
+		
+		if(obj instanceof Customer) {
+			Customer c = (Customer)obj;
+			if(c.firstName.equals(this.firstName) && c.lastName.equals(this.lastName) && c.email.equals(this.email) && c.id==this.id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.id;
+	}
 }

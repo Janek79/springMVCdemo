@@ -4,7 +4,9 @@
 <head>
 <title>Adding customer</title>
 </head>
+
 <body>
+<h2>Create new customer</h2>
 	<form:form modelAttribute="customer" action="process">
 		<table>
 			<tr>

@@ -37,6 +37,16 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDAO.getWholeCustomersList();
 	}
 	
+	@Override
+	public void deleteCustomer(int customerId) {
+		customerDAO.deleteCustomer(customerId);
+	}
+	
+	@Override
+	public List<Customer> getSearchedCustomers(String searchedCustomer) {
+		return customerDAO.getSearchedCustomers(searchedCustomer);
+	}
+	
 	public CustomerRepository getCustomerDAO() {
 		return customerDAO;
 	}
@@ -44,5 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public void setCustomerDAO(CustomerRepositoryImpl customerDAO) {
 		this.customerDAO = customerDAO;
 	}
+	
+	
 	
 }
