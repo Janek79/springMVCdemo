@@ -1,8 +1,11 @@
 package pl.springmvcdemo.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,9 +32,14 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/process")
-	public String processForm(@ModelAttribute Customer customer) {
-		customerService.addCustomer(customer);
-		return "redirect:/list";
+	public String processForm(@ModelAttribute("customer") @Valid Customer customer, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "form";
+		} else {
+			customerService.addCustomer(customer);
+			return "redirect:/list";
+		}
+
 	}
 
 	@RequestMapping("/delete")
