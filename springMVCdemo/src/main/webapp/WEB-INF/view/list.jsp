@@ -1,4 +1,6 @@
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,16 +29,18 @@
 					<td><c:out value="${customer.email}" /></td>
 
 
-					<c:url var="updateURL" value="/update">
-						<c:param name="customerId" value="${customer.id}" />
-					</c:url>
-					<td><a href="<c:out value="${updateURL}"/>">Update</a></td>
+					<security:authorize access="hasRole('ADMIN')">
+						<c:url var="updateURL" value="/update">
+							<c:param name="customerId" value="${customer.id}" />
+						</c:url>
+						<td><a href="<c:out value="${updateURL}"/>">Update</a></td>
 
-					<c:url var="deleteURL" value="/delete">
-						<c:param name="customerId" value="${customer.id}" />
-					</c:url>
-					<td><a href="<c:out value="${deleteURL}"/>"
-						onclick="return confirm('Are you sure you want to delete that customer?')">Delete</a></td>
+						<c:url var="deleteURL" value="/delete">
+							<c:param name="customerId" value="${customer.id}" />
+						</c:url>
+						<td><a href="<c:out value="${deleteURL}"/>"
+							onclick="return confirm('Are you sure you want to delete that customer?')">Delete</a></td>
+					</security:authorize>
 				</tr>
 			</c:forEach>
 		</table>
@@ -44,10 +48,15 @@
 	<c:if test="${empty customersList}">
 		<h3>Nothing was found</h3>
 	</c:if>
-	<input type="button" value="Add customer to the list"
-		onclick="location.href='form'" />
 
-	<input type="button" value="Whole list"
-		onclick="location.href='list'" />
+	<security:authorize access="hasRole('ADMIN')">
+		<input type="button" value="Add customer to the list"
+			onclick="location.href='form'" />
+	</security:authorize>
+
+	<input type="button" value="Whole list" onclick="location.href='list'" />
+	<br />
+	<br />
+	<input type="button" value="Log out" onclick="location.href='logout'" />
 </body>
 </html>
